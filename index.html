@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="MerphyOS">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="manifest" href="manifest.json">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Desktop OS</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="wallpaper-1 booting">
+ <div class="boot-screen" id="bootScreen">
+  <div class="boot-card">
+    <div class="boot-logo">
+      <div class="boot-logo-icon">M</div>
+    </div>
+
+    <h1>MerphyOS</h1>
+    <p class="boot-subtitle">Подготовка рабочего стола</p>
+
+    <div class="boot-progress">
+      <div class="boot-progress-fill"></div>
+    </div>
+
+    <div class="boot-status" id="bootStatus">
+      Запуск системы...
+    </div>
+  </div>
+</div>
+  <main class="desktop" id="desktop">
+    <div class="desktop-icons">
+      <div class="desktop-icon" data-open="calculator">
+        <div class="icon">🧮</div>
+        <span>Калькулятор</span>
+      </div>
+
+      <div class="desktop-icon" data-open="garage">
+        <div class="icon">🚗</div>
+        <span>Гараж</span>
+      </div>
+
+      <div class="desktop-icon" data-open="music">
+        <div class="icon">🎵</div>
+        <span>Музыка</span>
+      </div>
+
+      <div class="desktop-icon" data-open="games">
+        <div class="icon">🎮</div>
+        <span>Игры</span>
+      </div>
+      <div class="desktop-icon" data-open="browser">
+ 	 <div class="icon">🌐</div>
+  	 <span>Браузер</span>
+      </div>
+    </div>
+
+    <div class="selection-box" id="selectionBox"></div>
+
+    <section class="window" id="calculator">
+      <div class="window-header">
+        <div class="window-title">Калькулятор</div>
+
+        <div class="window-actions">
+  	   <button class="minimize-btn" type="button" data-minimize="calculator">−</button>
+	   <button class="maximize-btn" type="button" data-maximize="calculator" title="На весь экран">□</button>
+  	   <button class="close-btn" type="button" data-close="calculator">×</button>
+	</div>
+      </div>
+
+      <div class="window-body">
+        <div class="calculator">
+          <input class="calc-display" id="calcDisplay" value="0" readonly>
+
+          <div class="calc-grid">
+            <button class="calc-btn" type="button" data-calc="clear">C</button>
+            <button class="calc-btn" type="button" data-calc="back">⌫</button>
+            <button class="calc-btn operator" type="button" data-calc="%">%</button>
+            <button class="calc-btn operator" type="button" data-calc="/">÷</button>
+
+            <button class="calc-btn" type="button" data-calc="7">7</button>
+            <button class="calc-btn" type="button" data-calc="8">8</button>
+            <button class="calc-btn" type="button" data-calc="9">9</button>
+            <button class="calc-btn operator" type="button" data-calc="*">×</button>
+
+            <button class="calc-btn" type="button" data-calc="4">4</button>
+            <button class="calc-btn" type="button" data-calc="5">5</button>
+            <button class="calc-btn" type="button" data-calc="6">6</button>
+            <button class="calc-btn operator" type="button" data-calc="-">−</button>
+
+            <button class="calc-btn" type="button" data-calc="1">1</button>
+            <button class="calc-btn" type="button" data-calc="2">2</button>
+            <button class="calc-btn" type="button" data-calc="3">3</button>
+            <button class="calc-btn operator" type="button" data-calc="+">+</button>
+
+            <button class="calc-btn zero" type="button" data-calc="0">0</button>
+            <button class="calc-btn" type="button" data-calc=".">.</button>
+            <button class="calc-btn equal" type="button" data-calc="=">=</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="window garage-window" id="garage">
+      <div class="window-header">
+        <div class="window-title">Гараж</div>
+
+        <div class="window-actions">
+  	   <button class="minimize-btn" type="button" data-minimize="garage">−</button>
+ 	   <button class="maximize-btn" type="button" data-maximize="garage" title="На весь экран">□</button>
+  	   <button class="close-btn" type="button" data-close="garage">×</button>
+	</div>
+      </div>
+
+      <div class="window-body">
+        <div class="garage-card">
+          <div class="garage-scene" id="garageScene">
+            <div class="garage-lights"></div>
+
+            <img
+              class="garage-car-image"
+              id="garageCarImage"
+              src="priora.png"
+              alt="Белая Приора хэтчбэк"
+            >
+
+            <div class="css-car" id="cssCar">
+              <div class="css-car-body">
+                <div class="css-car-window"></div>
+                <div class="css-car-light"></div>
+                <div class="css-wheel css-wheel-left"></div>
+                <div class="css-wheel css-wheel-right"></div>
+              </div>
+            </div>
+
+            <div class="garage-floor"></div>
+          </div>
+
+          <div class="garage-panel">
+            <div>
+              <p class="garage-label">Твой автомобиль</p>
+              <h3>Белая Приора хэтчбэк</h3>
+
+              <p class="garage-description">
+                Виртуальный гараж для твоей машины. Можно загрузить PNG-фото,
+                завести двигатель и позже добавить тюнинг, пробег и обслуживание.
+              </p>
+            </div>
+
+            <div class="garage-actions">
+              <label class="garage-upload">
+                Загрузить картинку
+                <input id="carUpload" type="file" accept="image/png,image/jpeg,image/webp">
+              </label>
+
+              <button class="garage-action-btn" id="startEngineBtn" type="button">
+                Завести двигатель
+              </button>
+            </div>
+
+            <div class="specs">
+              <div class="spec">
+                <span>Модель</span>
+                <strong>Лада Приора</strong>
+              </div>
+
+              <div class="spec">
+                <span>Кузов</span>
+                <strong>Хэтчбэк</strong>
+              </div>
+
+              <div class="spec">
+                <span>Цвет</span>
+                <strong>Белый</strong>
+              </div>
+
+              <div class="spec">
+                <span>Двигатель</span>
+                <strong>1.6 л</strong>
+              </div>
+
+              <div class="spec">
+                <span>Мощность</span>
+                <strong>106 л.с.</strong>
+              </div>
+            </div>
+
+            <div class="garage-status" id="garageStatus">
+              Машина заглушена.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="window" id="music">
+      <div class="window-header">
+        <div class="window-title">Музыка</div>
+
+        <div class="window-actions">
+  	   <button class="minimize-btn" type="button" data-minimize="music">−</button>
+ 	   <button class="maximize-btn" type="button" data-maximize="music" title="На весь экран">□</button>
+  	   <button class="close-btn" type="button" data-close="music">×</button>
+	</div>
+      </div>
+
+      <div class="window-body">
+        <div class="music-player">
+          <div class="music-cover" id="musicCover">
+            🎵
+          </div>
+
+          <div class="music-info">
+            <h3 id="trackTitle">Трек не выбран</h3>
+            <p id="trackArtist">Музыкальный плеер</p>
+          </div>
+
+          <audio id="audioPlayer"></audio>
+
+          <div class="music-timeline">
+            <input
+              class="music-progress"
+              id="musicProgress"
+              type="range"
+              min="0"
+              max="100"
+              value="0"
+              step="0.1"
+            >
+
+            <div class="music-time">
+              <span id="currentTime">0:00</span>
+              <span id="durationTime">0:00</span>
+            </div>
+          </div>
+
+          <div class="music-controls">
+            <button class="music-control small-control" id="shuffleTrackBtn" type="button" title="Случайно">
+              🔀
+            </button>
+
+            <button class="music-control" id="prevTrackBtn" type="button" title="Предыдущий трек">
+              ⏮
+            </button>
+
+            <button class="music-control music-play" id="playTrackBtn" type="button" title="Играть">
+              ▶
+            </button>
+
+            <button class="music-control" id="nextTrackBtn" type="button" title="Следующий трек">
+              ⏭
+            </button>
+
+            <button class="music-control small-control" id="repeatTrackBtn" type="button" title="Повтор">
+              🔁
+            </button>
+          </div>
+
+          <div class="volume-row">
+            <button class="mute-btn" id="muteTrackBtn" type="button" title="Выключить звук">
+              🔊
+            </button>
+
+            <input
+              class="volume-slider"
+              id="volumeSlider"
+              type="range"
+              min="0"
+              max="1"
+              value="0.8"
+              step="0.01"
+            >
+          </div>
+
+          <div class="playlist" id="playlist">
+            <button class="playlist-item active" type="button" data-track="0">
+              <span>01</span>
+              KUPER
+            </button>
+
+            <button class="playlist-item" type="button" data-track="1">
+              <span>02</span>
+              TOKYO - SQWOZ BAB
+            </button>
+
+            <button class="playlist-item" type="button" data-track="2">
+              <span>03</span>
+              Отпускай - Три дня дождя
+            </button>
+
+            <button class="playlist-item" type="button" data-track="3">
+              <span>04</span>
+              Прощание - Три Дня Дождя
+            </button>
+
+            <button class="playlist-item" type="button" data-track="4">
+              <span>05</span>
+              Я и одиночество - Три дня дождя
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="window games-window" id="games">
+     <div class="window-header">
+      <div class="window-title">Игры</div>
+
+      <div class="window-actions">
+       <button class="minimize-btn" type="button" data-minimize="games">−</button>
+       <button class="maximize-btn" type="button" data-maximize="games" title="На весь экран">□</button>
+       <button class="close-btn" type="button" data-close="games">×</button>
+      </div>
+     </div>
+
+     <div class="window-body">
+      <div class="games-app">
+  <div class="games-sidebar">
+    <button class="game-card active" type="button" data-game-tab="snake">
+      <span class="game-card-icon">🐍</span>
+
+      <span>
+        <strong>Змейка</strong>
+        <small>Классическая аркада</small>
+      </span>
+    </button>
+
+    <button class="game-card" type="button" data-game-tab="racing">
+      <span class="game-card-icon">🏎️</span>
+
+      <span>
+        <strong>Гонки</strong>
+        <small>Merphy Racing</small>
+      </span>
+    </button>
+
+    <button class="game-card locked" type="button">
+      <span class="game-card-icon">🧱</span>
+
+      <span>
+        <strong>2048</strong>
+        <small>Скоро добавим</small>
+      </span>
+    </button>
+  </div>
+
+  <div class="game-content">
+    <div class="snake-game game-panel active" id="snakeGame" data-game-panel="snake">
+      <div class="game-topbar">
+        <div>
+          <span>Счёт</span>
+          <strong id="snakeScore">0</strong>
+        </div>
+
+        <div>
+          <span>Рекорд</span>
+          <strong id="snakeBest">0</strong>
+        </div>
+
+        <div>
+          <span>Статус</span>
+          <strong id="snakeStatus">Готова</strong>
+        </div>
+      </div>
+
+      <div class="snake-board-wrap">
+        <canvas id="snakeCanvas" width="360" height="360"></canvas>
+
+        <div class="snake-overlay" id="snakeOverlay">
+          <h3>Змейка</h3>
+          <p>Нажми «Старт» и управляй стрелками или WASD.</p>
+        </div>
+      </div>
+
+      <div class="snake-actions">
+        <button class="game-action-btn" id="snakeStartBtn" type="button">
+          Старт
+        </button>
+
+        <button class="game-action-btn" id="snakePauseBtn" type="button">
+          Пауза
+        </button>
+
+        <button class="game-action-btn danger" id="snakeResetBtn" type="button">
+          Сброс
+        </button>
+      </div>
+
+      <div class="snake-mobile-controls">
+        <button type="button" data-snake-dir="up">↑</button>
+
+        <div>
+          <button type="button" data-snake-dir="left">←</button>
+          <button type="button" data-snake-dir="down">↓</button>
+          <button type="button" data-snake-dir="right">→</button>
+        </div>
+      </div>
+
+      <p class="game-hint">
+        Управление: стрелки клавиатуры или W A S D.
+      </p>
+    </div>
+
+    <div class="race-game game-panel" id="raceGame" data-game-panel="racing">
+      <div class="game-topbar">
+        <div>
+          <span>Счёт</span>
+          <strong id="raceScore">0</strong>
+        </div>
+
+        <div>
+          <span>Рекорд</span>
+          <strong id="raceBest">0</strong>
+        </div>
+
+        <div>
+          <span>Скорость</span>
+          <strong id="raceSpeed">1</strong>
+        </div>
+      </div>
+
+      <div class="race-board-wrap">
+        <canvas id="raceCanvas" width="360" height="520"></canvas>
+
+        <div class="race-overlay" id="raceOverlay">
+          <h3>Merphy Racing</h3>
+          <p>Нажми «Старт» и уворачивайся от препятствий.</p>
+        </div>
+      </div>
+
+      <div class="race-actions">
+        <button class="game-action-btn" id="raceStartBtn" type="button">
+          Старт
+        </button>
+
+        <button class="game-action-btn" id="racePauseBtn" type="button">
+          Пауза
+        </button>
+
+        <button class="game-action-btn danger" id="raceResetBtn" type="button">
+          Сброс
+        </button>
+      </div>
+
+      <div class="race-mobile-controls">
+        <button type="button" data-race-move="left">←</button>
+        <button type="button" data-race-move="right">→</button>
+      </div>
+
+       <p class="game-hint">
+        Управление: стрелки ← → или клавиши A и D.
+       </p>
+      </div>
+     </div>
+    </div>
+   </section>      
+
+
+	<section class="window browser-window" id="browser">
+  <div class="window-header">
+    <div class="window-title">Merphy Browser</div>
+
+    <div class="window-actions">
+      <button class="minimize-btn" type="button" data-minimize="browser">−</button>
+      <button class="maximize-btn" type="button" data-maximize="browser" title="На весь экран">□</button>
+      <button class="close-btn" type="button" data-close="browser">×</button>
+    </div>
+  </div>
+
+  <div class="window-body browser-body">
+    <div class="browser-app">
+      <form class="browser-toolbar" id="browserForm">
+        <button class="browser-nav-btn" id="browserBackBtn" type="button" title="Назад">←</button>
+        <button class="browser-nav-btn" id="browserForwardBtn" type="button" title="Вперёд">→</button>
+        <button class="browser-nav-btn" id="browserReloadBtn" type="button" title="Обновить">⟳</button>
+        <button class="browser-nav-btn" id="browserHomeBtn" type="button" title="Домой">⌂</button>
+
+        <input
+          class="browser-address"
+          id="browserAddress"
+          type="text"
+          placeholder="Введите адрес или поисковый запрос"
+          autocomplete="off"
+        >
+
+        <button class="browser-go-btn" type="submit">Перейти</button>
+        <button class="browser-nav-btn" id="browserExternalBtn" type="button" title="Открыть снаружи">↗</button>
+      </form>
+
+      <div class="browser-content">
+        <div class="browser-home active" id="browserHome">
+          <div class="browser-home-card">
+            <div class="browser-logo">🌐</div>
+            <h2>Merphy Browser</h2>
+            <p>Введите адрес сайта или поисковый запрос.</p>
+
+            <div class="browser-quick-links">
+              <button type="button" data-browser-url="https://example.com">Example</button>
+              <button type="button" data-browser-url="https://github.com">GitHub</button>
+              <button type="button" data-browser-url="https://www.wikipedia.org">Wikipedia</button>
+              <button type="button" data-browser-url="https://duckduckgo.com">DuckDuckGo</button>
+            </div>
+          </div>
+        </div>
+
+        <iframe
+          class="browser-frame"
+          id="browserFrame"
+          title="Merphy Browser Frame"
+          referrerpolicy="no-referrer"
+        ></iframe>
+
+        <div class="browser-state" id="browserLoading">
+          <div class="browser-spinner"></div>
+          <p>Открываем сайт внутри MerphyOS...</p>
+        </div>
+
+        <div class="browser-state browser-error" id="browserError">
+          <h3>Не удалось открыть сайт внутри MerphyOS</h3>
+          <p>
+            Некоторые сайты запрещают открытие внутри встроенного окна.
+            Можно открыть страницу в новой вкладке браузера.
+          </p>
+
+          <button class="browser-open-external" id="browserErrorExternalBtn" type="button">
+            Открыть в новой вкладке
+          </button>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section>
+  </main>
+
+  <div class="start-menu" id="startMenu">
+    <div class="start-title">Пуск</div>
+
+    <div class="start-grid">
+      <button class="start-app" type="button" data-open="calculator">
+        <span class="app-emoji">🧮</span>
+        Калькулятор
+      </button>
+
+      <button class="start-app" type="button" data-open="garage">
+        <span class="app-emoji">🚗</span>
+        Гараж
+      </button>
+
+      <button class="start-app" type="button" data-open="music">
+        <span class="app-emoji">🎵</span>
+        Музыка
+      </button>
+      <button class="start-app" type="button" data-open="games">
+  	<span class="app-emoji">🎮</span>
+  	Игры
+      </button>
+
+      <button class="start-app" type="button" data-open="browser">
+        <span class="app-emoji">🌐</span>
+        Браузер
+      </button>
+    </div>
+
+    <div class="wallpaper-panel">
+      <div class="wallpaper-title">Обои</div>
+
+      <div class="wallpaper-list">
+        <button
+          class="wallpaper-btn wallpaper-preview-1"
+          type="button"
+          data-wallpaper="wallpaper-1"
+          title="Стандартные обои 1"
+        ></button>
+
+        <button
+          class="wallpaper-btn wallpaper-preview-2"
+          type="button"
+          data-wallpaper="wallpaper-2"
+          title="Стандартные обои 2"
+        ></button>
+
+        <button
+          class="wallpaper-btn wallpaper-preview-3"
+          type="button"
+          data-wallpaper="wallpaper-3"
+          title="Стандартные обои 3"
+        ></button>
+
+        <button
+          class="wallpaper-btn wallpaper-preview-4"
+          type="button"
+          data-wallpaper="wallpaper-4"
+          title="Стандартные обои 4"
+        ></button>
+
+        <button
+          class="wallpaper-btn wallpaper-preview-5"
+          type="button"
+          data-wallpaper="wallpaper-5"
+          title="Стандартные обои 5"
+        ></button>
+
+        <button
+          class="wallpaper-btn wallpaper-custom-1"
+          type="button"
+          data-wallpaper-image="wallpapers/custom-1.jpg"
+          data-wallpaper-name="custom-1"
+          title="Пользовательские обои 1"
+        ></button>
+
+        <button
+          class="wallpaper-btn wallpaper-custom-2"
+          type="button"
+          data-wallpaper-image="wallpapers/custom-2.jpg"
+          data-wallpaper-name="custom-2"
+          title="Пользовательские обои 2"
+        ></button>
+
+        <button
+          class="wallpaper-btn wallpaper-custom-3"
+          type="button"
+          data-wallpaper-image="wallpapers/custom-3.jpg"
+          data-wallpaper-name="custom-3"
+          title="Пользовательские обои 3"
+        ></button>
+
+        <button
+          class="wallpaper-btn wallpaper-custom-4"
+          type="button"
+          data-wallpaper-image="wallpapers/custom-4.jpg"
+          data-wallpaper-name="custom-4"
+          title="Пользовательские обои 4"
+        ></button>
+
+        <button
+          class="wallpaper-btn wallpaper-custom-5"
+          type="button"
+          data-wallpaper-image="wallpapers/custom-5.jpg"
+          data-wallpaper-name="custom-5"
+          title="Пользовательские обои 5"
+        ></button>
+      </div>
+    </div>
+
+    <div class="power-panel">
+ 	<button class="power-btn" id="shutdownBtn" type="button">
+    	<span>⏻</span>
+    	Выключить MerphyOS
+ 	</button>
+    </div>
+  </div>
+
+<div class="desktop-context-menu" id="desktopContextMenu">
+  <button class="context-item" id="contextWallpaperBtn" type="button">
+    <span>🖼️</span>
+    Сменить обои
+  </button>
+
+  <button class="context-item" id="contextCalculatorBtn" type="button">
+    <span>🧮</span>
+    Открыть калькулятор
+  </button>
+
+  <button class="context-item" id="contextMusicBtn" type="button">
+    <span>🎵</span>
+    Открыть музыку
+  </button>
+
+  <button class="context-item" id="contextRefreshBtn" type="button">
+    <span>🔄</span>
+    Обновить рабочий стол
+  </button>
+
+  <button class="context-item" id="contextToggleIconsBtn" type="button">
+    <span>👁️</span>
+    Скрыть иконки
+  </button>
+</div>
+  <nav class="dock">
+    <button class="dock-btn" id="startBtn" type="button" title="Пуск">⊞</button>
+    <button class="dock-btn" type="button" data-open="calculator" title="Калькулятор">🧮</button>
+    <button class="dock-btn" type="button" data-open="garage" title="Гараж">🚗</button>
+    <button class="dock-btn" type="button" data-open="music" title="Музыка">🎵</button>
+    <button class="dock-btn" type="button" data-open="games" title="Игры">🎮</button>
+    <button class="dock-btn" type="button" data-open="browser" title="Браузер">🌐</button>
+
+    <div class="time-box" id="clock">
+      --:--
+    </div>
+  </nav>
+
+<div class="shutdown-screen" id="shutdownScreen">
+    <div class="shutdown-card">
+      <div class="shutdown-icon">⏻</div>
+      <h2 id="shutdownTitle">Завершение работы</h2>
+      <p id="shutdownText">MerphyOS завершает процессы...</p>
+
+      <div class="shutdown-loader">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+  
+      <button class="restart-btn" id="restartBtn" type="button">
+        Включить снова
+      </button>
+    </div>
+  </div>
+  <script src="script.js"></script>
+  
+</body>
+</html>
